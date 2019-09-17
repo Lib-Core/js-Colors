@@ -1,8 +1,8 @@
-import ColorConverterError from "./Errors/ColorConverterError";
-import Color from "./types/Color";
-import {rgbRegex} from "./regexps";
-import {colorAlphaInRange, colorPartInRange, isEmptyMatchPart} from "./functions";
-import {colorAlphaMaxValue} from "./variables";
+import ColorConverterError from "../Errors/ColorConverterError";
+import Color from "../types/Color";
+import {rgbRegex} from "../regexps";
+import {colorAlphaInRange, colorPartInRange, isEmptyMatchPart} from "../functions";
+import {colorAlphaMaxValue} from "../variables";
 
 function parseRgbPart(value: any, name: string): number {
     const parsedValue = parseInt(value);

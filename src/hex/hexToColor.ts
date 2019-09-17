@@ -1,8 +1,8 @@
-import ColorConverterError from "./Errors/ColorConverterError";
-import Color from "./types/Color";
-import {hexRegex} from "./regexps";
-import {colorPartInRange, isEmptyMatchPart} from "./functions";
-import {colorAlphaMaxValue, colorPartMaxValue} from "./variables";
+import ColorConverterError from "../Errors/ColorConverterError";
+import Color from "../types/Color";
+import {hexRegex} from "../regexps";
+import {colorPartInRange, isEmptyMatchPart} from "../functions";
+import {colorAlphaMaxValue, colorPartMaxValue} from "../variables";
 
 function parseHexPart(value: any, name: string): number {
     const parsedValue = parseInt(value, 16);
