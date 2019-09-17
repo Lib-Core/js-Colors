@@ -1,8 +1,8 @@
 import ColorConverterError from "../Errors/ColorConverterError";
 import Color from "../types/Color";
 import {hexRegex} from "../regexps";
-import {colorPartInRange, isEmptyMatchPart} from "../functions";
-import {colorAlphaMaxValue, colorPartMaxValue} from "../variables";
+import {colorPartInRange, colorPartToPercent, isEmptyMatchPart} from "../functions";
+import {colorAlphaMaxValue} from "../variables";
 
 function parseHexPart(value: any, name: string): number {
     const parsedValue = parseInt(value, 16);
@@ -14,7 +14,7 @@ function parseHexPart(value: any, name: string): number {
 
 function parseHexAlpha(value: any): number {
     if (isEmptyMatchPart(value)) return colorAlphaMaxValue;
-    return parseHexPart(value, 'alpha') / colorPartMaxValue;
+    return colorPartToPercent(parseHexPart(value, 'alpha'));
 }
 
 export default function hexToColor(hex: string | any): Color {

@@ -1,5 +1,6 @@
 import Color from "../types/Color";
-import {colorAlphaMaxValue, colorPartMaxValue} from "../variables";
+import {colorAlphaMaxValue} from "../variables";
+import {percentToColorPart} from "../functions";
 
 function parseHexStringPiece(piece: number): string {
     const convertedPiece = piece.toString(16);
@@ -16,7 +17,7 @@ export default function colorToHex(color: Color): string {
 
     if (color.alpha && color.alpha !== colorAlphaMaxValue) {
         pieces.push(parseHexStringPiece(
-            Math.round(color.alpha * colorPartMaxValue),
+            percentToColorPart(color.alpha),
         ));
     }
 
