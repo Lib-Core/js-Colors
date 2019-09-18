@@ -4,6 +4,7 @@
   "description": "A color convert lib",
   "main": "index.js",
   "scripts": {
+    "publishCode": "npm run compile && cp package.json build && cd build && npm publish --access public",
     "removeBuild": "rm -rf build",
     "compile": "npm run removeBuild && tsc",
     "watch": "npm run removeBuild && tsc -w"
