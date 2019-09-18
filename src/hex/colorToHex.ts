@@ -1,5 +1,5 @@
 import Color from "../types/Color";
-import {colorAlphaMaxValue} from "../variables";
+import {percentMaxValue} from "../variables";
 import {percentToColorPart} from "../functions";
 import validateColorType from "../validators/validateColorType";
 import ColorConverterError from "../Errors/ColorConverterError";
@@ -21,7 +21,7 @@ export default function colorToHex(color: Color): string {
         parseHexStringPiece(color.blue),
     ];
 
-    if (color.alpha && color.alpha !== colorAlphaMaxValue) {
+    if (color.alpha && color.alpha !== percentMaxValue) {
         pieces.push(parseHexStringPiece(
             percentToColorPart(color.alpha),
         ));

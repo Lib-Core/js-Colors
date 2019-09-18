@@ -8,7 +8,6 @@ export default function colorToHsl(color: Color) {
         throw new ColorConverterError('insert a valid color object');
     }
 
-
     const red = colorPartToPercent(color.red);
     const green = colorPartToPercent(color.green);
     const blue = colorPartToPercent(color.blue);

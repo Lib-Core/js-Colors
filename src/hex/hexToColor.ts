@@ -2,7 +2,7 @@ import ColorParseError from "../Errors/ColorParseError";
 import Color from "../types/Color";
 import {hexRegex} from "../regexps";
 import {colorPartInRange, colorPartToPercent, isEmptyMatchPart} from "../functions";
-import {colorAlphaMaxValue} from "../variables";
+import {percentMaxValue} from "../variables";
 
 function parseHexPart(value: any, name: string): number {
     const parsedValue = parseInt(value, 16);
@@ -13,7 +13,7 @@ function parseHexPart(value: any, name: string): number {
 }
 
 function parseHexAlpha(value: any): number {
-    if (isEmptyMatchPart(value)) return colorAlphaMaxValue;
+    if (isEmptyMatchPart(value)) return percentMaxValue;
     return colorPartToPercent(parseHexPart(value, 'alpha'));
 }
 
@@ -33,7 +33,7 @@ export default function hexToColor(hex: string | any): Color {
             red: parseHexPart(r + r, 'red'),
             green: parseHexPart(g + g, 'green'),
             blue: parseHexPart(b + b, 'blue'),
-            alpha: colorAlphaMaxValue,
+            alpha: percentMaxValue,
         };
     }
 
