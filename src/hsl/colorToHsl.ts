@@ -1,7 +1,13 @@
 import Color from "../types/Color";
 import {colorPartToPercent} from "../functions";
+import validateColorType from "../validators/validateColorType";
+import ColorConverterError from "../Errors/ColorConverterError";
 
 export default function colorToHsl(color: Color) {
+    if (!validateColorType(color)) {
+        throw new ColorConverterError('insert a valid color object');
+    }
+
 
     const red = colorPartToPercent(color.red);
     const green = colorPartToPercent(color.green);
