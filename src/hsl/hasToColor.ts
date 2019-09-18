@@ -1,11 +1,11 @@
-import ColorConverterError from "../Errors/ColorConverterError";
+import ColorParseError from "../Errors/ColorParseError";
 import {hslRegex} from "../regexps";
 import {isEmptyMatchPart, parseAlphaFromColorMatches, percentToColorPart} from "../functions";
 
 function parseHslHue(value: string) {
     const parsedValue = parseInt(value);
     if (isNaN(parsedValue) || parsedValue < 0 || parsedValue > 359) {
-        throw new ColorConverterError(`hsl hue must be or between 0 and 359. "${value}" given`);
+        throw new ColorParseError(`hsl hue must be or between 0 and 359. "${value}" given`);
     }
     return parsedValue;
 }
@@ -13,14 +13,14 @@ function parseHslHue(value: string) {
 function parseHslPercent(value: string) {
     const parsedValue = parseInt(value);
     if (isNaN(parsedValue) || parsedValue < 0 || parsedValue > 100) {
-        throw new ColorConverterError(`hsl hue must be or between 0% and 100%. "${value}%" given`);
+        throw new ColorParseError(`hsl hue must be or between 0% and 100%. "${value}%" given`);
     }
     return parsedValue / 100;
 }
 
 export default function hslToColor(hsl: string | any) {
     if (typeof hsl !== 'string') {
-        throw new ColorConverterError('inout must be a string');
+        throw new ColorParseError('inout must be a string');
     }
 
     const matches = hsl.match(hslRegex);
@@ -30,7 +30,7 @@ export default function hslToColor(hsl: string | any) {
         (matches[1] === 'hsl' && !isEmptyMatchPart(matches[5])) ||
         (matches[1] === 'hsla' && isEmptyMatchPart(matches[5]))
     ) {
-        throw new ColorConverterError('input must be a valid hsl or hsla string');
+        throw new ColorParseError('input must be a valid hsl or hsla string');
     }
 
     const hue = parseHslHue(matches[2]);

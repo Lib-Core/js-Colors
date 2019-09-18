@@ -1,5 +1,5 @@
 import {colorAlphaMaxValue, colorAlphaMinValue, colorPartMaxValue, colorPartMinValue} from "./variables";
-import ColorConverterError from "./Errors/ColorConverterError";
+import ColorParseError from "./Errors/ColorParseError";
 
 export const isEmptyMatchPart = (value: any) => value == undefined;
 export const colorPartInRange = (value: number) => value < colorPartMinValue || value > colorPartMaxValue;
@@ -12,7 +12,7 @@ export function parseAlphaFromColorMatches(value: any): number {
 
     const parsedValue = parseFloat(value);
     if (isNaN(parsedValue) || colorAlphaInRange(parsedValue)) {
-        throw new ColorConverterError(`part alpha not valid. "${value}" inserted`);
+        throw new ColorParseError(`part alpha not valid. "${value}" inserted`);
     }
     return parsedValue;
 }

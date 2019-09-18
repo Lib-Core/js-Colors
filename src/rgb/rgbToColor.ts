@@ -1,4 +1,4 @@
-import ColorConverterError from "../Errors/ColorConverterError";
+import ColorParseError from "../Errors/ColorParseError";
 import Color from "../types/Color";
 import {rgbRegex} from "../regexps";
 import {colorPartInRange, isEmptyMatchPart, parseAlphaFromColorMatches} from "../functions";
@@ -6,14 +6,14 @@ import {colorPartInRange, isEmptyMatchPart, parseAlphaFromColorMatches} from "..
 function parseRgbPart(value: any, name: string): number {
     const parsedValue = parseInt(value);
     if (isNaN(parsedValue) || colorPartInRange(parsedValue)) {
-        throw new ColorConverterError(`part "${name}" not valid. "${value}" inserted`);
+        throw new ColorParseError(`part "${name}" not valid. "${value}" inserted`);
     }
     return parsedValue;
 }
 
 export default function rgbToColor(rgb: string | any): Color {
     if (typeof rgb !== 'string') {
-        throw new ColorConverterError('inout must be a string');
+        throw new ColorParseError('inout must be a string');
     }
 
     const matches = rgb.match(rgbRegex);
@@ -23,7 +23,7 @@ export default function rgbToColor(rgb: string | any): Color {
         (matches[1] === 'rgb' && !isEmptyMatchPart(matches[5])) ||
         (matches[1] === 'rgba' && isEmptyMatchPart(matches[5]))
     ) {
-        throw new ColorConverterError('input must be a valid rgb or rgba string');
+        throw new ColorParseError('input must be a valid rgb or rgba string');
     }
 
     return {

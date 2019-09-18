@@ -1,4 +1,4 @@
-import ColorConverterError from "../Errors/ColorConverterError";
+import ColorParseError from "../Errors/ColorParseError";
 import Color from "../types/Color";
 import {hexRegex} from "../regexps";
 import {colorPartInRange, colorPartToPercent, isEmptyMatchPart} from "../functions";
@@ -7,7 +7,7 @@ import {colorAlphaMaxValue} from "../variables";
 function parseHexPart(value: any, name: string): number {
     const parsedValue = parseInt(value, 16);
     if (isNaN(parsedValue) || colorPartInRange(parsedValue)) {
-        throw new ColorConverterError(`part "${name}" not valid. "${value}" inserted`);
+        throw new ColorParseError(`part "${name}" not valid. "${value}" inserted`);
     }
     return parsedValue;
 }
@@ -19,12 +19,12 @@ function parseHexAlpha(value: any): number {
 
 export default function hexToColor(hex: string | any): Color {
     if (typeof hex !== 'string') {
-        throw new ColorConverterError('inout must be a string');
+        throw new ColorParseError('inout must be a string');
     }
 
     const matches = hex.match(hexRegex);
     if (matches === null) {
-        throw new ColorConverterError('input must be a valid hex string');
+        throw new ColorParseError('input must be a valid hex string');
     }
 
     if (isEmptyMatchPart(matches[2])) {
