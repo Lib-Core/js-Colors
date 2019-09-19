@@ -1,4 +1,5 @@
-export type ColorTypeAlpha = 'hex_alpha' | 'rgba' | 'hsla';
-export type ColorTypeNormal = 'hex' | 'rgb' | 'hsl';
-type ColorType = ColorTypeNormal | ColorTypeAlpha;
+export type ColorTypeHex = 'hex' | 'hex_alpha';
+export type ColorTypeRgb = 'rgb' | 'rgba';
+export type ColorTypeHsl = 'hsla' | 'hsl';
+type ColorType = ColorTypeHex | ColorTypeRgb | ColorTypeHsl;
 export default ColorType;

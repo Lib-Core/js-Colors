@@ -2,10 +2,10 @@ import Color from "../types/Color";
 import {colorPartToPercent, roundToFloat} from "../functions";
 import validateColorType from "../validators/validateColorType";
 import ColorConverterError from "../Errors/ColorConverterError";
-import ColorArray from "../types/ColorArray";
-import ColorType from "../types/ColorType";
+import {ColorArrayHsl} from "../types/ColorArray";
+import {ColorTypeHsl} from "../types/ColorType";
 
-export default function colorToColorArrayHsl(color: Color): ColorArray {
+export default function colorToColorArrayHsl(color: Color): ColorArrayHsl {
     if (!validateColorType(color)) {
         throw new ColorConverterError('insert a valid color object');
     }
@@ -40,7 +40,7 @@ export default function colorToColorArrayHsl(color: Color): ColorArray {
         roundToFloat(lightness * 100),
     ];
 
-    let hslHeader: ColorType = 'hsl';
+    let hslHeader: ColorTypeHsl = 'hsl';
     if (color.alpha !== 1) {
         hslHeader = 'hsla';
         colorPartValues.push(color.alpha);
