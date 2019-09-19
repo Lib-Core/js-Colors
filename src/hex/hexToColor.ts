@@ -6,7 +6,7 @@ import {percentMaxValue} from "../variables";
 
 function parseHexPart(value: any, name: string): number {
     const parsedValue = parseInt(value, 16);
-    if (isNaN(parsedValue) || colorPartInRange(parsedValue)) {
+    if (isNaN(parsedValue) || !colorPartInRange(parsedValue)) {
         throw new ColorParseError(`part "${name}" not valid. "${value}" inserted`);
     }
     return parsedValue;

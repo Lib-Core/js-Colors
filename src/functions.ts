@@ -2,10 +2,17 @@ import {percentMaxValue, percentMinValue, colorPartMaxValue, colorPartMinValue} 
 import ColorParseError from "./Errors/ColorParseError";
 
 export const isEmptyMatchPart = (value: any) => value == undefined;
-export const colorPartInRange = (value: number) => value < colorPartMinValue || value > colorPartMaxValue;
-export const percentInRange = (value: number) => value < percentMinValue || value > percentMaxValue;
+export const colorPartInRange = (value: number) => value >= colorPartMinValue && value <= colorPartMaxValue;
+export const percentInRange = (value: number) => value >= percentMinValue && value <= percentMaxValue;
 export const colorPartToPercent = (value: number) => value / colorPartMaxValue;
 export const percentToColorPart = (value: number) => Math.round(value * colorPartMaxValue);
+
+export function roundToFloat(value: number, floatLength: number = 0) {
+    const calculator = 10 ** floatLength;
+    value *= calculator;
+    value = Math.round(value);
+    return value / calculator;
+}
 
 export function makeColorPartInRange(value: number) {
     if (value < colorPartMinValue) return colorPartMinValue;
