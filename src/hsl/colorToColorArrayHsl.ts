@@ -4,6 +4,7 @@ import validateColorType from "../validators/validateColorType";
 import ColorConverterError from "../Errors/ColorConverterError";
 import {ColorArrayHsl} from "../types/ColorArray";
 import {ColorTypeHsl} from "../types/ColorType";
+import {percentMaxValue} from "../variables";
 
 export default function colorToColorArrayHsl(color: Color): ColorArrayHsl {
     if (!validateColorType(color)) {
@@ -41,7 +42,7 @@ export default function colorToColorArrayHsl(color: Color): ColorArrayHsl {
     ];
 
     let hslHeader: ColorTypeHsl = 'hsl';
-    if (color.alpha !== 1) {
+    if (color.alpha !== percentMaxValue) {
         hslHeader = 'hsla';
         colorPartValues.push(color.alpha);
     }

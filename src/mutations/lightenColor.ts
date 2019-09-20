@@ -6,7 +6,10 @@ import ColorConverterError from "../Errors/ColorConverterError";
 export default function lightenColor(color: Color, percent: number) {
     if (!validateColorType(color)) throw new ColorConverterError('insert a valid color object');
     if (!percentInRange(percent)) throw new ColorConverterError('insert a valid float percent like 50% => 0.5');
+    return lightenColorTransform(color, percent);
+}
 
+export function lightenColorTransform(color: Color, percent: number) {
     const colorPercent = percentToColorPart(percent);
     return {
         red: makeColorPartInRange(color.red + colorPercent),
