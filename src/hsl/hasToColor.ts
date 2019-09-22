@@ -20,7 +20,7 @@ function parseHslPercent(value: string) {
 
 export default function hslToColor(hsl: string | any) {
     if (typeof hsl !== 'string') {
-        throw new ColorParseError('inout must be a string');
+        throw new ColorParseError('input must be a string');
     }
 
     const matches = hsl.match(hslRegex);

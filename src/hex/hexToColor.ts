@@ -19,7 +19,7 @@ function parseHexAlpha(value: any): number {
 
 export default function hexToColor(hex: string | any): Color {
     if (typeof hex !== 'string') {
-        throw new ColorParseError('inout must be a string');
+        throw new ColorParseError('input must be a string');
     }
 
     const matches = hex.match(hexRegex);

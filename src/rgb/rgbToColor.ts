@@ -13,7 +13,7 @@ function parseRgbPart(value: any, name: string): number {
 
 export default function rgbToColor(rgb: string | any): Color {
     if (typeof rgb !== 'string') {
-        throw new ColorParseError('inout must be a string');
+        throw new ColorParseError('input must be a string');
     }
 
     const matches = rgb.match(rgbRegex);
