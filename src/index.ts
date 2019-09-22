@@ -6,3 +6,7 @@ export {default as hsl} from './hsl'
 export {default as validators} from './validators'
 export {default as mutations} from './mutations'
 export {default as info} from './info'
+export * from './types/Color'
+export * from './types/ColorArray'
+export * from './types/ColorType'
+export default void 0;
