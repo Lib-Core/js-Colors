@@ -9,9 +9,10 @@ export const percentToColorPart = (value: number) => Math.round(value * colorPar
 
 export function roundToFloat(value: number, floatLength: number = 0) {
     const calculator = 10 ** floatLength;
-    value *= calculator;
+    if (calculator !== 1) value *= calculator;
     value = Math.round(value);
-    return value / calculator;
+    if (calculator !== 1) value /= calculator;
+    return value;
 }
 
 export function makeColorPartInRange(value: number) {
@@ -24,8 +25,9 @@ export function parseAlphaFromColorMatches(value: any): number {
     if (isEmptyMatchPart(value)) return percentMaxValue;
 
     const parsedValue = parseFloat(value);
-    if (isNaN(parsedValue) || percentInRange(parsedValue)) {
-        throw new ColorParseError(`part alpha not valid. "${value}" inserted`);
+    if (isNaN(parsedValue) || !percentInRange(parsedValue)) {
+        throw new ColorParseError(`part alpha not valid. "${value}" inserted. "${value}" => "${parsedValue}"`);
     }
+
     return parsedValue;
 }
